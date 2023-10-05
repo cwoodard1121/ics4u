@@ -5,6 +5,125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Cameron's Crackers</title>
+    <style>
+        /* Reset some default styles */
+        body, h1, h2, p {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+
+        /* Header styles */
+        header {
+            background-color: #003366;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .logo {
+            margin-bottom: 10px;
+        }
+
+        .logo img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        h1 {
+            font-size: 28px;
+        }
+
+        /* Navigation styles */
+        nav {
+            background-color: #003366;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease-in-out;
+        }
+
+        nav a:hover {
+            color: #ffcc00;
+        }
+
+        /* Main content styles */
+        main {
+            padding: 20px;
+        }
+
+        .product {
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .product a {
+            display: inline-block;
+            margin: 20px;
+        }
+
+        .product img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .product img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: #003366;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Responsive styles */
+        @media screen and (max-width: 600px) {
+            main {
+                padding: 10px;
+            }
+
+            nav ul {
+                text-align: center;
+                padding-top: 10px;
+                display: flex;
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -12,15 +131,16 @@
             <img src="images/logo.jpg" alt="Cameron's Crackers Logo">
         </div>
         <h1>Welcome to Cameron's Crackers</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="checkout.html"><img src="images/cart.png" alt="Checkout" class="checkout"></a></li>
-            </ul>
-        </nav>
     </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="checkout.html"><img src="images/cart.png" alt="Checkout" class="checkout"></a></li>
+        </ul>
+    </nav>
 
     <main>
         <section class="product">
