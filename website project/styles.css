@@ -1,4 +1,4 @@
-/* Reset some default styles */
+/* ... Your existing CSS code ... */
 body, h1, h2, p {
     margin: 0;
     padding: 0;
@@ -117,3 +117,62 @@ footer {
 .product p {
     color: #777;
 }
+/* Navbar styles */
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+    transition: transform 0.2s ease-in-out;
+}
+
+nav ul li:hover {
+    transform: translateY(-3px);
+}
+
+nav a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+nav a:hover {
+    color: #ffcc00; /* Change to your desired hover color */
+}
+
+/* Smooth transitions */
+a, .smooth-transition {
+    transition: all 0.3s ease;
+}
+
+/* Add hover effect for product images */
+.product-image:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Add hover effect for checkout icon */
+.checkout:hover {
+    transform: rotate(20deg);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+    main {
+        padding: 10px;
+    }
+
+    /* Adjust padding for better mobile experience */
+    nav ul {
+        text-align: center;
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+/* ... Your existing CSS code ... */

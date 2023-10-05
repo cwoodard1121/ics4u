@@ -5,21 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Checkout - Cameron's Crackers</title>
+    <style>
+        /* Additional inline styles for demonstration purposes */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #003366;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .logo img {
+            max-width: 150px;
+            height: auto;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-top: 10px;
+        }
+
+        main {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            margin: 20px auto;
+            max-width: 800px;
+        }
+
+        .checkout-form {
+            margin: 20px auto;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #003366;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #002855;
+        }
+
+        footer {
+            background-color: #003366;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="images/logo.jpg" alt="Cameron's Crackers Logo">
-        </div>
         <h1>Checkout</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About Us</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="checkout.html"><img src="images/cart.jpg" alt="Checkout" class="checkout"></a></li>
-            </ul>
-        </nav>
+            <div class="logo">
+                <img src="images/logo.jpg" alt="Cameron's Crackers Logo">
+            </div>
+            <h1>Welcome to Cameron's Crackers</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="checkout.html"><img src="images/cart.png" alt="Checkout" class="checkout"></a></li>
+                </ul>
+            </nav>
     </header>
 
     <main>
@@ -44,7 +117,7 @@
                 <label for="cvv">CVV:</label>
                 <input type="text" id="cvv" name="cvv" required>
 
-                <button type="submit">Submit Order</button>
+                <input type="submit" value="Submit Order">
             </form>
         </section>
     </main>
