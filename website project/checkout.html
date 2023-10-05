@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Checkout - Cameron's Crackers</title>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/logo.jpg" alt="Cameron's Crackers Logo">
+        </div>
+        <h1>Checkout</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="checkout.html"><img src="images/cart.jpg" alt="Checkout" class="checkout"></a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="checkout-form">
+            <h2>Order Details</h2>
+            <form action="index.html" method="post">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="address">Address:</label>
+                <textarea id="address" name="address" rows="4" required></textarea>
+
+                <label for="credit-card">Credit Card Number:</label>
+                <input type="text" id="credit-card" name="credit-card" required>
+
+                <label for="expiration-date">Expiration Date:</label>
+                <input type="text" id="expiration-date" name="expiration-date" required placeholder="MM/YY">
+
+                <label for="cvv">CVV:</label>
+                <input type="text" id="cvv" name="cvv" required>
+
+                <button type="submit">Submit Order</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Cameron's Crackers</p>
+    </footer>
+</body>
+</html>
