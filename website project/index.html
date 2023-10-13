@@ -11,18 +11,37 @@
         <div class="logo">
             <img src="images/logo.jpg" alt="Cameron's Crackers Logo">
         </div>
-        <h1>Welcome to Cameron's Crackers</h1>
+        <h1>Cameron's Crackers</h1>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+
         <nav>
-            <ul>
+            <ul class="active">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About Us</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="checkout.html"><img src="images/cart.png" alt="Checkout" class="checkout"></a></li>
             </ul>
         </nav>
+        
+        <script>
+            function toggleMenu() {
+                var nav = document.querySelector("nav ul");
+                    if (nav.style.height === "0px" || nav.style.height === "") {
+                        nav.style.height = "auto";
+                    } else {
+                        nav.style.height = "0px"; 
+                    }
+            }
+        </script>
     </header>
 
     <main>
+        <section class="background-section">
+            <div class="text-overlay">
+                <h2>Welcome to Cameron's Crackers</h2>
+                <p>Your trusted source for delicious crackers.</p>
+            </div>
+        </section>
         <section class="product">
             <h2>Our Delicious Crackers</h2>
             <div class="product-list">

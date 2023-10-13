@@ -6,8 +6,7 @@ body, h1, h2, p {
 
 body {
     font-family: Arial, sans-serif;
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    background-color: #f5f5f5;
+    background-color: #f5f5f5; /* Set the background color to light gray */
 }
 
 /* Header styles */
@@ -18,137 +17,177 @@ header {
     padding: 20px;
 }
 
-.logo {
-    margin-bottom: 10px;
+
+/* Center the text and content in the About Us section after the CEO */
+.about {
+    background-color: #fff;
+    padding: 20px;
+    text-align: left; /* Left-align the top content */
 }
 
-.logo img {
-    max-width: 200px;
-    height: auto;
+.about h2 {
+    font-size: 24px;
+    color: #003366;
+    padding-bottom: 10px;
 }
 
-h1 {
-    font-size: 28px;
+.about p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 15px;
+    padding: 10px; /* Add padding around the paragraphs */
+    text-align: left; /* Left-align the top paragraphs */
 }
 
-/* Navigation styles */
-nav {
-    background-color: #003366;
+.ceo-box {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px; /* Add padding around the CEO box */
+}
+
+.ceo-box h3 {
+    font-size: 20px;
+    color: #003366;
+    margin-top: 10px;
+    border-bottom: 1px solid #003366;
+    padding-bottom: 5px;
+}
+
+.ceo-image {
+    max-width: 150px;
+    border-radius: 50%;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    margin: 0 auto; /* Center-align the CEO image */
+}
+
+/* Center-align the content after the CEO */
+.centered-content {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px; /* Add padding around the content after the CEO */
+}
+
+.centered-content h2 {
+    font-size: 24px;
+    color: #003366;
+    margin-bottom: 20px; 
+}
+
+.centered-content p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 15px;
+    padding: 10px; /* Add padding around the paragraphs */
+}
+
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+.rounded-element {
+    border-radius: 10px; /* Adjust the radius as needed */
+}
+
+.product-item {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add transitions for hover effect */
     text-align: center;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
+.product-item:hover {
+    transform: scale(1.05); /* Scale up on hover */
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Add a box shadow on hover */
+}
+
+.product-image {
+    width: 300px;
+    height: 250px;
+    border-radius: 10px; /* Add a border radius for a rounded appearance */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.product p {
+    color: #555;
+    padding: 10px;
+}
+
+.checkout {
+    width: 30px; /* Set the desired width for the shopping cart icon */
+    height: 30px; /* Set the desired height for the shopping cart icon */
+    display: inline-block; /* Display it as an inline block to align it properly */
+}
+
+.shadowed-element {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2); /* Adjust values as needed */
+}
+
+.gradient-background {
+    background: linear-gradient(to bottom, #fff, #e0e0e0); /* Adjust colors as needed */
+}
+
+.smooth-transition {
+    transition: all 0.3s ease; /* Adjust the duration and timing function as needed */
+}
+
+.smooth-transition:hover {
+    transform: scale(1.1); /* Example: Scale on hover */
+}
+
+.text-shadowed {
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Adjust values as needed */
+}
+
+header h1 {
+    margin: 0;
 }
 
 nav ul li {
     display: inline;
     margin-right: 20px;
-    transition: transform 0.2s ease-in-out;
-}
-
-nav ul li:hover {
-    transform: translateY(-3px);
 }
 
 nav a {
     color: #ffffff;
     text-decoration: none;
-    font-size: 18px;
-    transition: color 0.3s ease-in-out;
+    padding: 10px 15px; /* Add padding to the buttons */
+    border-radius: 20px; /* Add rounded corners */
+    background-color: #003366; /* Background color for buttons */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth hover transition */
+    display: inline-block; /* Display buttons as inline blocks */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Add a slight outline */
 }
 
+/* Navbar button hover styles */
 nav a:hover {
-    color: #ffcc00;
+    background-color: #005599; /* Change the background color on hover */
+    transform: scale(1.05); /* Slight scale up on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4); /* Increase the outline on hover */
 }
+
+
+
+
 
 /* Main content styles */
 main {
-    padding: 20px;
-}
-
-.product {
-    text-align: center;
-}
-
-h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-.product-list {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.checkout {
-    max-width: 50px;
-    max-height: 50px;
-}
-/* Navigation styles */
-nav {
-    background-color: #003366;
-    text-align: center;
-    padding: 10px 0; /* Added padding to separate the navbar from the content */
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin-right: 20px;
-    transition: transform 0.2s ease-in-out;
-}
-
-/* Add a box around the navigation items */
-nav ul li a {
-    display: inline-block;
-    padding: 10px 20px; /* Adjust padding as needed */
-    border: 1px solid #fff; /* Border style */
-    border-radius: 5px; /* Rounded corners */
-    transition: background-color 0.3s ease-in-out;
-}
-
-/* Change background color on hover */
-nav ul li a:hover {
-    background-color: #ffcc00;
-    color: #003366; /* Change text color on hover */
-}
-
-
-.product-item {
-    flex: 0 0 calc(33.33% - 20px); /* Adjust width as needed */
-    margin: 10px;
-    text-align: center;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
     padding: 20px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease-in-out;
 }
 
-.product-item:hover {
-    transform: scale(1.05);
+section {
+    max-width: 800px;
+    margin-bottom: 20px;
 }
 
-.product-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-}
-
-.product-item p {
-    font-size: 18px;
-    margin-top: 10px;
-    color: #333;
-}
 
 /* Footer styles */
 footer {
@@ -157,26 +196,103 @@ footer {
     text-align: center;
     padding: 10px;
 }
-
-/* Responsive styles */
-@media screen and (max-width: 600px) {
-    main {
-        padding: 10px;
+@media screen and (min-width: 601px){
+    .menu-icon {
+        display: none;
     }
+}
 
-    nav ul {
-        text-align: center;
-        padding-top: 10px;
-        display: flex;
+.background-section {
+    background-image: url('images/background.jpg'); /* Update with your image path */
+    background-size: 100% 100%; /* Stretch both width and height to cover the entire screen */
+    background-position: top left; /* Align to the top left corner */
+    height: 50vh; /* Increase the height to your desired value */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+/* Text overlay styles */
+.text-overlay {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.text-overlay h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.text-overlay p {
+    font-size: 18px;
+}
+
+/* Responsive boxes */
+.responsive-boxes {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #f0f0f0; /* Set your desired background color */
+}
+
+.box {
+    width: 30%; /* Adjust the width of the boxes as needed */
+    padding: 20px;
+    background-color: #fff; /* Set the box background color */
+    text-align: center;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Add a box shadow */
+    border-radius: 10px;
+    margin: 10px;
+}
+
+/* Media query for responsive design */
+@media screen and (max-width: 600px) {
+    .responsive-boxes {
         flex-direction: column;
     }
 
-    nav ul li {
-        margin-right: 0;
-        margin-bottom: 10px;
+    .box {
+        width: 80%;
+        margin: 10px auto;
     }
+}
+
+/* Responsive styles */
+@media screen and (max-width: 600px) {
+
 
     .product-item {
-        flex: 0 0 calc(50% - 20px); /* Adjust width for mobile */
+        width: 100%; /* Make product items take full width on smaller screens */
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        height: 0; /* Start with a height of 0 */
+        overflow: hidden; /* Hide overflowing content */
+        transition: height 0.3s ease; /* Add a transition for the height property */
+    }
+
+    nav ul.active {
+        height: auto; /* Set the height to "auto" to open the menu */
+        display: flex;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+
+
+    /* Hamburger icon */
+    .menu-icon {
+        display: block;
+        font-size: 24px;
+        cursor: pointer;
+        text-align: right;
+        display: block;
     }
 }
