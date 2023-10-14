@@ -7,11 +7,22 @@
     <title>Contact - Cameron's Crackers</title>
 </head>
 <body>
+    <script>
+        function toggleMenu() {
+            var nav = document.querySelector("nav ul");
+                if (nav.style.height === "0px" || nav.style.height === "") {
+                    nav.style.height = "auto";
+                } else {
+                    nav.style.height = "0px"; 
+                }
+        }
+    </script>
     <header>
         <div class="logo">
             <img src="images/logo.jpg" alt="Cameron's Crackers Logo">
         </div>
         <h1>Contact Us</h1>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -25,10 +36,40 @@
     <main>
         <section class="contact">
             <h2>Get in Touch</h2>
-            <a href="mailto:cwoodard@bayviewglen.ca">Email us!</a>
-            <p>Phone: 555-555-5555</p>
-            <!-- Contact information and form here -->
+            <p>Feel free to contact our CEO through the form below or using the provided contact information:</p>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>Email: <a href="mailto:ohussein@bayviewglen.ca">ohussein@bayviewglen.ca</a></p>
+                    <p>Phone: 555-555-5555</p>
+                </div>
+                <div class="contact-form">
+                    <h3>Contact Form</h3>
+                    <form action="submit_form.php" method="post">
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" required>
+
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+
+                        <label for="message">Message:</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
         </section>
+            <!-- Add another section for Customer Service -->
+        <section class="customer-service">
+            <h3>Customer Service</h3>
+            <p>We're committed to providing excellent customer service. If you have any complaints, please don't hesitate to file a report using the information below:</p>
+            <p>Email: <a href="mailto:customerservice@cameronscrackers.com">customerservice@cameronscrackers.com</a></p>
+            <p>Phone: 555-123-4567</p>
+        </section>
+
+        
     </main>
 
     <footer>
