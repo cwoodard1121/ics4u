@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>League Standings</title>
+    <!-- Add Bulma CSS link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+
+<section class="section">
+    <div class="container">
+        <h1 class="title">League Standings</h1>
+
+        <button class="button is-info" onclick="showForm()">Add Wins</button>
+
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Team</th>
+                    <th>Wins</th>
+                    <th>Standing</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Blue Jays</td>
+                    <td id="wins_BlueJays">0</td>
+                    <td id="standing_BlueJays">1</td>
+                </tr>
+                <tr>
+                    <td>Rays</td>
+                    <td id="wins_Rays">0</td>
+                    <td id="standing_Rays">2</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <form id="scoreForm" onsubmit="submitForm(event)">
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label" for="teamSelect">Select Team:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <div class="select">
+                                <select id="teamSelect" class="is-fullwidth" required>
+                                    <option value="BlueJays">Blue Jays</option>
+                                    <option value="Rays">Rays</option>
+                                    <!-- Add more options as needed -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label" for="newScore">Enter Wins  :</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input type="number" id="newScore" class="input" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label"></div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <button type="submit" class="button is-primary">Submit Score</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+<script>
+
+    const teams = ["BlueJays", "Rays", "RedSox"]
+
+    if(document.readyState == "loading") {
+        addEventListener("DOMContentLoaded", (e) => {
+            teams.forEach(team => {
+                const selectedTeam = team;
+
+                const newScore = document.getElementById('newScore').value;
+                const scoreElement = document.getElementById(`wins_${selectedTeam}`);
+                scoreElement.textContent = localStorage.getItem(`wins_${team}`);
+
+                // Update the table
+                rearrangeTeams();
+            });
+
+        });
+    }
+
+    function showForm() {
+        const form = document.getElementById('scoreForm');
+        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+    }
+
+    function submitForm(event) {
+        event.preventDefault();
+
+        const teamSelect = document.getElementById('teamSelect');
+        const selectedTeam = teamSelect.value;
+
+        const newScore = document.getElementById('newScore').value;
+        const scoreElement = document.getElementById(`wins_${selectedTeam}`);
+        scoreElement.textContent = newScore;
+
+        // Update the table
+        rearrangeTeams();
+
+        // Update localStorage
+        localStorage.setItem(`wins_${selectedTeam}`, newScore);
+    }
+
+    function rearrangeTeams() {
+        const standingsBody = document.querySelector('.table tbody');
+        const rows = Array.from(standingsBody.getElementsByTagName('tr'));
+
+        // Sort the rows based on the values in the third column (index 2)
+        rows.sort(function (a, b) {
+            var aValue = parseInt(a.cells[1].textContent);
+            var bValue = parseInt(b.cells[1].textContent);
+            return bValue - aValue; // Sorting in descending order
+        });
+
+        // Remove existing rows from the table body
+        while (standingsBody.firstChild) {
+            standingsBody.removeChild(standingsBody.firstChild);
+        }
+
+        // Append the sorted rows back to the table body
+        rows.forEach(function (row, index) {
+            standingsBody.appendChild(row);
+            // Update the standing numbers in the array
+            row.cells[2].textContent = index + 1;
+        });
+    }
+</script>
+
+</body>
+</html>
