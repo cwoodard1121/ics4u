@@ -18,6 +18,83 @@ header {
 }
 
 
+/* Style the contact form */
+.contact-form form {
+    display: grid; /* Use a grid layout for the form */
+    grid-template-columns: 1fr; /* Single column */
+    grid-gap: 10px; /* Spacing between form elements */
+}
+
+.contact-form label {
+    font-weight: bold; /* Make labels bold */
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+    width: 100%; /* Full width for form inputs */
+    padding: 10px; /* Add padding to form inputs */
+    border: 1px solid #ddd; /* Add a border to form inputs */
+    border-radius: 5px; /* Rounded corners for form inputs */
+}
+
+.contact-form button {
+    background-color: #003366; /* Background color for the submit button */
+    color: #fff; /* Text color */
+    border: none; /* Remove button border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Padding for the button */
+    cursor: pointer; /* Show a pointer cursor on hover */
+}
+
+.contact-form button:hover {
+    background-color: #005599; /* Change the background color on hover */
+}
+
+/* Style all grid sections */
+.contact-grid, .customer-service {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    padding: 20px; /* Add padding around the grid sections */
+    background-color: #f7f7f7; /* Set a background color for the grid sections */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Center-align the content in the grid sections */
+}
+
+/* Style headers in grid sections */
+.contact-grid h3, .customer-service h3 {
+    color: #003366;
+    margin-bottom: 10px;
+    font-size: 24px;
+}
+
+/* Style paragraphs in grid sections */
+.contact-grid p, .customer-service p {
+    color: #555;
+    font-size: 18px;
+}
+
+/* Add a different background color for alternating grid sections */
+.customer-service {
+    background-color: #e7e7e7;
+}
+
+/* Style links in grid sections */
+.contact-grid a, .customer-service a {
+    color: #003366;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-grid a:hover, .customer-service a:hover {
+    color: #005599;
+}
+
+
+
 /* Center the text and content in the About Us section after the CEO */
 .about {
     background-color: #fff;
@@ -91,6 +168,176 @@ body {
     border-radius: 10px; /* Adjust the radius as needed */
 }
 
+
+/* Additional styles for product items */
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px; /* Add margin to create space between the background and products */
+}
+
+.product-item {
+    flex: 0 0 calc(30% - 20px); /* Adjust the width and add a gap between items */
+    margin: 10px;
+    padding: 20px;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-item:hover {
+    transform: scale(1.05);
+}
+
+.product-image {
+    width: 100%; /* Make sure images cover the entire width of the product item */
+    max-height: 250px; /* Limit the height to maintain consistency */
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.product p {
+    color: #555;
+    padding: 10px;
+}
+
+.product {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.product-details {
+    display: flex;
+    align-items: center;
+}
+
+.product-image img {
+    width: 200px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.product-info {
+    flex: 1;
+}
+
+.product-info p {
+    margin: 10px 0;
+}
+
+.quantity label {
+    display: block;
+    margin-top: 10px;
+}
+
+.quantity input {
+    width: 40px;
+    padding: 5px;
+}
+
+.add-to-cart {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.add-to-cart:hover {
+    background-color: #45a049;
+}
+
+/* Product Description Styles */
+.product-description {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.product-description h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+/* Customer Reviews Styles */
+.customer-reviews {
+    margin: 20px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.customer-reviews h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.review {
+    display: flex;
+    margin-top: 20px;
+}
+
+.reviewer-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.review-content {
+    flex: 1;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+
+
+
+
+
+
+
+/* Maintain the existing styles for other elements */
+
+/* Add styles for new products */
+.product3 {
+    /* Add styles for product 3 here */
+}
+
+.product4 {
+    /* Add styles for product 4 here */
+}
+
+/* Add styles for the rest of the new products (5 to 10) */
+.product5 {}
+.product6 {}
+.product7 {}
+.product8 {}
+.product9 {}
+.product10 {}
+
 .product-item {
     display: inline-block;
     margin: 10px;
@@ -109,6 +356,13 @@ body {
 .product-image {
     width: 300px;
     height: 250px;
+    border-radius: 10px; /* Add a border radius for a rounded appearance */
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+.product-image-2 {
+    width: 30px;
+    height: 20px;
     border-radius: 10px; /* Add a border radius for a rounded appearance */
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
 }
@@ -208,9 +462,15 @@ footer {
     background-position: top left; /* Align to the top left corner */
     height: 50vh; /* Increase the height to your desired value */
     display: flex;
+    padding: 5%;
+    box-shadow: #555;
     align-items: center;
     text-align: center;
     color: #fff;
+    /* Add border styles */
+    border: 3px solid #003366; /* Color and thickness of the border */
+      border-radius: 10px; /* Add rounded corners to the border */
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2); /* Optional shadow for the border */
 }
 
 /* Text overlay styles */
@@ -267,6 +527,10 @@ footer {
         width: 100%; /* Make product items take full width on smaller screens */
     }
 
+    .contact-grid, .customer-service {
+        grid-template-columns: 1fr; /* Change to a single column layout */
+    }
+
     nav ul {
         display: flex;
         flex-direction: column;
@@ -294,5 +558,14 @@ footer {
         cursor: pointer;
         text-align: right;
         display: block;
+    }
+
+    .product-details {
+        flex-direction: column;
+    }
+
+    .product-image img {
+        margin: 0;
+        margin-bottom: 20px;
     }
 }

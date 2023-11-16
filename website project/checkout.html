@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="styles.css">
     <title>Checkout - Cameron's Crackers</title>
     <style>
-        /* Additional inline styles for demonstration purposes */
         body {
             font-family: Arial, sans-serif;
             background-color: #f8f8f8;
@@ -78,13 +77,24 @@
         }
     </style>
 </head>
+
 <body>
+    <script>
+        function toggleMenu() {
+            var nav = document.querySelector("nav ul");
+                if (nav.style.height === "0px" || nav.style.height === "") {
+                    nav.style.height = "auto";
+                } else {
+                    nav.style.height = "0px"; 
+                }
+        }
+    </script>   
     <header>
-        <h1>Cameron's Crackers</h1>
             <div class="logo">
                 <img src="images/logo.jpg" alt="Cameron's Crackers Logo">
             </div>
             <h1>Checkout</h1>
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
             <nav>
                 <ul>
                     <li><a href="index.html">Home</a></li>

@@ -4,40 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles.css">
-    <title>Product 1 - Cameron's Crackers</title>
+    <title>Premium Plus Crackers - Cameron's Crackers</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
     <header>
-        <div class="logo">
-            <img src="../images/logo.jpg" alt="Cameron's Crackers Logo">
-        </div>
-        <h1>Welcome to Cameron's Crackers</h1>
         <nav>
+            <div class="logo">
+                <img src="../images/logo.jpg" alt="Cameron's Crackers Logo">
+            </div>
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
             <ul>
                 <li><a href="../index.html">Home</a></li>
                 <li><a href="../about.html">About Us</a></li>
                 <li><a href="../contact.html">Contact</a></li>
                 <li><a href="../checkout.html"><img src="../images/cart.png" alt="Checkout" class="checkout"></a></li>
-                <!-- Add links for other products as needed -->
             </ul>
         </nav>
+        <h1>Welcome to Cameron's Crackers</h1>
     </header>
 
     <main>
         <section class="product">
-            <h2>Classic Cracker 2: Classic Salted Crackers</h2>
+            <h2>Premium Plus Crackers</h2>
             <div class="product-details">
-                <img src="../images/product2.jpg" alt="Premium Plus" class="product-image">
-                <p>Premium plus is the most premium brand in crackers. </p>
-                <p>Price: $599.99 per box</p>
-                <p>Available Sizes: 900g, 400g</p>
-                <!-- Add more product details here -->
+                <div class="product-image">
+                    <img src="../images/product2.jpg" alt="Premium Plus Crackers">
+                </div>
+                <div class="product-info">
+                    <p>Indulge in the exquisite flavor of our Premium Plus Crackers, crafted with the finest ingredients to elevate your snacking experience.</p>
+                    <p><strong>Price:</strong> $4.99 per box</p>
+                    <p><strong>Available Sizes:</strong> 150g, 500g</p>
+                    <div class="quantity">
+                        <label for="quantity">Quantity:</label>
+                        <input type="number" id="quantity" name="quantity" min="1" value="1">
+                    </div>
+                    <button class="add-to-cart">Add to Cart</button> 
+                </div>
             </div>
+        </section>
+
+        <section class="product-description">
+            <h3>Product Description</h3>
+            <p>Experience the luxurious taste of our Premium Plus Crackers. These crackers are meticulously seasoned to perfection, offering a delightful combination of flavors that make them ideal for snacking, entertaining guests, or pairing with your favorite spreads and cheeses.</p>
+        </section>
+
+        <section class="customer-reviews">
+            <h3>Customer Reviews</h3>
+            <div class="review">
+                <div class="reviewer-info">
+                    <img src="../images/logo.jpg" alt="Customer 1">
+                    <p>Customer 1</p>
+                </div>
+                <div class="review-content">
+                    <p>"I can't get enough of these Premium Plus Crackers! They are simply divine. Highly recommended!"</p>
+                </div>
+            </div>
+            <div class="review">
+                <div class="reviewer-info">
+                    <img src="../images/customer.png" alt="Customer 2">
+                    <p>Customer 2</p>
+                </div>
+                <div class="review-content">
+                    <p>"Cameron's Crackers never cease to amaze. The Premium Plus Crackers are my absolute favorite!"</p>
+                </div>
+            </div>
+            <!-- You can add more reviews here -->
         </section>
     </main>
 
     <footer>
         <p>&copy; 2023 Cameron's Crackers</p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            var nav = document.querySelector("nav ul");
+            if (nav.style.height === "0px" || nav.style.height === "") {
+                nav.style.height = "auto";
+            } else {
+                nav.style.height = "0px";
+            }
+        }
+    </script>
 </body>
 </html>
