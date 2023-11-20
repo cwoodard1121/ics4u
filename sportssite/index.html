@@ -13,43 +13,49 @@
     <div class="container">
         <h1 class="title">League Standings</h1>
 
-        <button class="button is-info" onclick="showForm()">Add Wins</button>
+        <button class="button is-info" onclick="showForm()">Add Game</button>
+
+        <table id="standingsTable" class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th onclick="sortTable('team')">Team</th>
+                    <th onclick="sortTable('wins')">Wins</th>
+                    <th onclick="sortTable('standing')">Standing</th>
+                </tr>
+            </thead>
+            <tbody id="standingsBody">
+                <!-- Table rows will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <h2 class="subtitle">Game Results</h2>
 
         <table class="table is-fullwidth">
             <thead>
                 <tr>
-                    <th>Team</th>
-                    <th>Wins</th>
-                    <th>Standing</th>
+                    <th>Team 1</th>
+                    <th>Score 1</th>
+                    <th>Team 2</th>
+                    <th>Score 2</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Blue Jays</td>
-                    <td id="wins_BlueJays">0</td>
-                    <td id="standing_BlueJays">1</td>
-                </tr>
-                <tr>
-                    <td>Rays</td>
-                    <td id="wins_Rays">0</td>
-                    <td id="standing_Rays">2</td>
-                </tr>
+            <tbody id="resultsBody">
+                <!-- Table rows will be dynamically added here -->
             </tbody>
         </table>
 
-        <form id="scoreForm" onsubmit="submitForm(event)">
+        <form id="gameForm" onsubmit="submitForm(event)">
+            <!-- Form fields will be dynamically added here -->
             <div class="field is-horizontal">
                 <div class="field-label">
-                    <label class="label" for="teamSelect">Select Team:</label>
+                    <label class="label" for="team1Select">Team 1:</label>
                 </div>
                 <div class="field-body">
                     <div class="field">
                         <div class="control">
                             <div class="select">
-                                <select id="teamSelect" class="is-fullwidth" required>
-                                    <option value="BlueJays">Blue Jays</option>
-                                    <option value="Rays">Rays</option>
-                                    <!-- Add more options as needed -->
+                                <select id="team1Select" class="is-fullwidth" required>
+                                    <!-- Options will be dynamically added here -->
                                 </select>
                             </div>
                         </div>
@@ -59,12 +65,42 @@
 
             <div class="field is-horizontal">
                 <div class="field-label">
-                    <label class="label" for="newScore">Enter Wins  :</label>
+                    <label class="label" for="score1">Score 1:</label>
                 </div>
                 <div class="field-body">
                     <div class="field">
                         <div class="control">
-                            <input type="number" id="newScore" class="input" required>
+                            <input type="number" id="score1" class="input" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label" for="team2Select">Team 2:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <div class="select">
+                                <select id="team2Select" class="is-fullwidth" required>
+                                    <!-- Options will be dynamically added here -->
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label" for="score2">Score 2:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input type="number" id="score2" class="input" required>
                         </div>
                     </div>
                 </div>
@@ -75,7 +111,8 @@
                 <div class="field-body">
                     <div class="field">
                         <div class="control">
-                            <button type="submit" class="button is-primary">Submit Score</button>
+                            <button type="button" class="button is-danger" onclick="cancelForm()">Cancel</button>
+                            <button type="submit" class="button is-primary">Submit Game</button>
                         </div>
                     </div>
                 </div>
@@ -86,51 +123,209 @@
 
 <script>
 
-    const teams = ["BlueJays", "Rays", "RedSox"]
 
-    if(document.readyState == "loading") {
-        addEventListener("DOMContentLoaded", (e) => {
-            teams.forEach(team => {
-                const selectedTeam = team;
+    let teams = ["BlueJays", "Rays", "RedSox"]; // You can add more teams here
 
-                const newScore = document.getElementById('newScore').value;
-                const scoreElement = document.getElementById(`wins_${selectedTeam}`);
-                scoreElement.textContent = localStorage.getItem(`wins_${team}`);
 
-                // Update the table
-                rearrangeTeams();
-            });
+    function loadGamesFromLocalStorage() {
+        const games = JSON.parse(localStorage.getItem('games')) || [];
+        const resultsBody = document.getElementById('resultsBody');
 
+        // Clear existing rows
+        resultsBody.innerHTML = '';
+
+        // Add rows for each stored game
+        games.forEach(game => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${game.team1}</td>
+                <td>${game.score1}</td>
+                <td>${game.team2}</td>
+                <td>${game.score2}</td>
+            `;
+            resultsBody.appendChild(tr);
+            updateStandings(game.team1, game.score1, game.team2, game.score2);
         });
     }
 
+    if (document.readyState == "loading") {
+        addEventListener("DOMContentLoaded", (e) => {
+            initializeTable();
+            initializeForm();
+            loadGamesFromLocalStorage(); // Load games from localStorage on page load
+        });
+    }
+
+    function initializeTable() {
+        const standingsBody = document.getElementById('standingsBody');
+        const resultsBody = document.getElementById('resultsBody');
+
+        teams.forEach(team => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td>${team}</td>
+                <td id="wins_${team}">0</td>
+                <td id="standing_${team}">0</td>
+            `;
+            standingsBody.appendChild(tr);
+        });
+
+        // Load data from local storage
+        teams.forEach(team => {
+            const wins = localStorage.getItem(`wins_${team}`);
+            if (wins !== null) {
+                document.getElementById(`wins_${team}`).textContent = wins;
+            }
+        });
+        const games = JSON.parse(localStorage.getItem("games"));
+        if(games == null) return;
+    }
+
+    function initializeForm() {
+        const gameForm = document.getElementById('gameForm');
+
+
+        teams.forEach((team, index) => {
+            const teamOption1 = document.createElement('option');
+            teamOption1.value = team;
+            teamOption1.textContent = team;
+
+            const teamOption2 = document.createElement('option');
+            teamOption2.value = team;
+            teamOption2.textContent = team;
+
+            document.getElementById('team1Select').appendChild(teamOption1);
+            document.getElementById('team2Select').appendChild(teamOption2);
+        });
+    }
+
+function sortTable(column) {
+    const standingsBody = document.getElementById('standingsBody');
+    const rows = Array.from(standingsBody.getElementsByTagName('tr'));
+
+    rows.sort(function (a, b) {
+        let aValue, bValue;
+
+        switch (column) {
+            case 'team':
+                aValue = a.cells[0].textContent;
+                bValue = b.cells[0].textContent;
+                break;
+            case 'wins':
+                aValue = parseInt(a.cells[1].textContent);
+                bValue = parseInt(b.cells[1].textContent);
+                break;
+            case 'standing':
+                aValue = parseInt(a.cells[2].textContent);
+                bValue = parseInt(b.cells[2].textContent);
+                break;
+            default:
+                // Default to sorting by wins if the column parameter is unrecognized
+                aValue = parseInt(a.cells[1].textContent);
+                bValue = parseInt(b.cells[1].textContent);
+        }
+
+        if (column !== 'team') {
+            return bValue - aValue; // Sorting in descending order for numeric columns
+        } else {
+            // For team column, perform a string comparison
+            return aValue.localeCompare(bValue);
+        }
+    });
+
+    // Remove existing rows from the table body
+    while (standingsBody.firstChild) {
+        standingsBody.removeChild(standingsBody.firstChild);
+    }
+
+    // Append the sorted rows back to the table body
+    rows.forEach(function (row, index) {
+        standingsBody.appendChild(row);
+        // Update the standing numbers in the array
+        row.cells[2].textContent = index + 1;
+    });
+}
+
     function showForm() {
-        const form = document.getElementById('scoreForm');
-        form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        const form = document.getElementById('gameForm');
+        form.style.display = 'block';
+    }
+
+    function cancelForm() {
+        const form = document.getElementById('gameForm');
+        form.style.display = 'none';
     }
 
     function submitForm(event) {
         event.preventDefault();
 
-        const teamSelect = document.getElementById('teamSelect');
-        const selectedTeam = teamSelect.value;
+        const team1Select = document.getElementById('team1Select');
+        const team2Select = document.getElementById('team2Select');
+        const score1 = parseInt(document.getElementById('score1').value) || 0;
+        const score2 = parseInt(document.getElementById('score2').value) || 0;
 
-        const newScore = document.getElementById('newScore').value;
-        const scoreElement = document.getElementById(`wins_${selectedTeam}`);
-        scoreElement.textContent = newScore;
+        // Check if the teams are different
+        if (team1Select.value === team2Select.value) {
+            alert('Please select two different teams for the game.');
+            return;
+        }
+
+
+        // Update standings
+        updateStandings(team1Select.value, score1, team2Select.value, score2);
+
+        // Update results table
+        updateResultsTable(team1Select.value, score1, team2Select.value, score2);
+
+        // Clear form inputs
+        document.getElementById('score1').value = '';
+        document.getElementById('score2').value = '';
+
+        // Hide the form
+        cancelForm();
+    }
+
+    function updateStandings(team1, score1, team2, score2) {
+        const winsElement1 = document.getElementById(`wins_${team1}`);
+        const standingElement1 = document.getElementById(`standing_${team1}`);
+        const winsElement2 = document.getElementById(`wins_${team2}`);
+        const standingElement2 = document.getElementById(`standing_${team2}`);
+
+        const currentWins1 = parseInt(winsElement1.textContent) || 0;
+        const currentWins2 = parseInt(winsElement2.textContent) || 0;
+
+        // Update team 1 wins
+        winsElement1.textContent = currentWins1 + (score1 > score2 ? 1 : 0);
+
+        // Update team 2 wins
+        winsElement2.textContent = currentWins2 + (score2 > score1 ? 1 : 0);
 
         // Update the table
         rearrangeTeams();
+    }
 
-        // Update localStorage
-        localStorage.setItem(`wins_${selectedTeam}`, newScore);
+    function updateResultsTable(team1, score1, team2, score2) {
+        const resultsBody = document.getElementById('resultsBody');
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${team1}</td>
+            <td>${score1}</td>
+            <td>${team2}</td>
+            <td>${score2}</td>
+        `;
+        resultsBody.appendChild(tr);
+
+        // Store the game results in localStorage
+        const games = JSON.parse(localStorage.getItem('games')) || [];
+        games.push({ team1, score1, team2, score2 });
+        localStorage.setItem('games', JSON.stringify(games));
     }
 
     function rearrangeTeams() {
-        const standingsBody = document.querySelector('.table tbody');
+        const standingsBody = document.getElementById('standingsBody');
         const rows = Array.from(standingsBody.getElementsByTagName('tr'));
 
-        // Sort the rows based on the values in the third column (index 2)
+        // Sort the rows based on the values in the second column (index 1)
         rows.sort(function (a, b) {
             var aValue = parseInt(a.cells[1].textContent);
             var bValue = parseInt(b.cells[1].textContent);
@@ -148,6 +343,34 @@
             // Update the standing numbers in the array
             row.cells[2].textContent = index + 1;
         });
+    }
+
+    function submitForm(event) {
+        event.preventDefault();
+
+        const team1Select = document.getElementById('team1Select');
+        const team2Select = document.getElementById('team2Select');
+        const score1 = parseInt(document.getElementById('score1').value) || 0;
+        const score2 = parseInt(document.getElementById('score2').value) || 0;
+
+        // Check if the teams are different
+        if (team1Select.value === team2Select.value) {
+            alert('Please select two different teams for the game.');
+            return;
+        }
+
+        // Update standings
+        updateStandings(team1Select.value, score1, team2Select.value, score2);
+
+        // Update results table and store in localStorage
+        updateResultsTable(team1Select.value, score1, team2Select.value, score2);
+
+        // Clear form inputs
+        document.getElementById('score1').value = '';
+        document.getElementById('score2').value = '';
+
+        // Hide the form
+        cancelForm();
     }
 </script>
 
