@@ -126,6 +126,8 @@
 
     let teams = ["BlueJays", "Rays", "RedSox"]; // You can add more teams here
 
+    let winsDirection = true;
+    let teamsDirection = true;
 
     function loadGamesFromLocalStorage() {
         const games = JSON.parse(localStorage.getItem('games')) || [];
@@ -200,6 +202,8 @@
     }
 
 function sortTable(column) {
+    winsDirection = !winsDirection;
+    teamsDirection = !teamsDirection;
     const standingsBody = document.getElementById('standingsBody');
     const rows = Array.from(standingsBody.getElementsByTagName('tr'));
 
@@ -226,10 +230,14 @@ function sortTable(column) {
         }
 
         if (column !== 'team') {
+            if(column == "wins") {
+                return winsDirection ? bValue - aValue : aValue - bValue;
+            }
             return bValue - aValue; // Sorting in descending order for numeric columns
         } else {
             // For team column, perform a string comparison
-            return aValue.localeCompare(bValue);
+
+            return teamsDirection ? aValue.localeCompare(bValue) : bValue.localeCompare(aValue);
         }
     });
 
