@@ -312,7 +312,7 @@ function sortTable(column) {
 
         // Store the game results in localStorage
         const games = JSON.parse(localStorage.getItem('games')) || [];
-        games.push({ team1, score1, team2, score2 });
+        games.push({ team1, score1, team2, score2,date });
         localStorage.setItem('games', JSON.stringify(games));
     }
 
