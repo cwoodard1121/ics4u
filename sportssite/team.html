@@ -4,56 +4,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Team Standings</title>
+    <title>Team Results</title>
     <!-- Add Bulma CSS link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
 </head>
 <body>
 
-<section class="section">
-    <div class="container">
-        <h1 class="title">Team Standings</h1>
-
-        <table id="standingsTable" class="table is-fullwidth">
-            <thead>
-                <tr>
-                    <th onclick="sortTable('team')">Team</th>
-                    <th onclick="sortTable('wins')">Wins</th>
-                    <th onclick="sortTable('standing')">Standing</th>
-                </tr>
-            </thead>
-            <tbody id="standingsBody">
-                <!-- Table rows will be dynamically added here -->
-            </tbody>
-        </table>
-
-        <h2 class="subtitle">Game Results</h2>
-
-        <table class="table is-fullwidth">
-            <thead>
-                <tr>
-                    <th>Team 1</th>
-                    <th>Score 1</th>
-                    <th>Team 2</th>
-                    <th>Score 2</th>
-                </tr>
-            </thead>
-            <tbody id="resultsBody">
-                <!-- Table rows will be dynamically added here -->
-            </tbody>
-        </table>
-
-        <div id="pagination" class="buttons has-addons is-centered">
-            <!-- Buttons for pagination will be dynamically added here -->
+    <section class="section">
+        <div class="container">
+            <h1 class="title">Team Results</h1> 
+    
+            <div class="columns is-multiline">
+                <!-- Display games as cards -->
+                <div class="column is-half">
+                    <!-- Adding a loop to create multiple cards for each game -->
+                    <!-- You can adjust the styles or classes for better appearance -->
+                    <!-- Use different classes for odd and even rows to provide visual separation -->
+                    <!-- For example, use 'is-primary' for odd rows and 'is-info' for even rows -->
+                    <!-- This is just an example, you can choose the classes that fit your design -->
+                    <div class="card mb-4">
+                        <div class="card-content">
+                            <table class="table is-fullwidth">
+                                <thead>
+                                    <tr>
+                                        <th>Team 1</th>
+                                        <th>Score 1</th>
+                                        <th>Team 2</th>
+                                        <th>Score 2</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resultsBody">
+                                    <!-- Table rows will be dynamically added here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Pagination buttons -->
+                <div class="column is-full">
+                    <div id="pagination" class="buttons is-centered">
+                        <!-- Buttons for pagination will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+    
+
 
 <script>
+    let teamGames = [];
+    let currentPage = 1;
+    const scoresPerPage = 5;
+
     const urlParams = new URLSearchParams(window.location.search); 
     const team = urlParams.get('team');
-    const teamData = urlParams.get('teamdata');
-    console.log(team);
+    
+    if (document.readyState == "loading") {
+        addEventListener("DOMContentLoaded", (e) => {
+            teamGames = JSON.parse(localStorage.getItem("games")).filter(game => {
+                return (game.team1.toLowerCase() == team || game.team2.toLowerCase() == team);
+            });
+            displayGames();
+        });
+    }
+
+    // display games in the table
+    function displayGames() {
+        const resultsBody = document.getElementById('resultsBody');
+        const paginationDiv = document.getElementById('pagination');
+
+        // Clear previous rows
+        resultsBody.innerHTML = '';
+
+        // Calculate start and end index based on the current page
+        const startIndex = (currentPage - 1) * scoresPerPage;
+        const endIndex = startIndex + scoresPerPage;
+
+        // Loop through teamGames and add rows to the table for the current page
+        teamGames.slice(startIndex, endIndex).forEach(game => {
+            const row = resultsBody.insertRow();
+
+            // Team 1 and Score 1
+            const cell1 = row.insertCell(0);
+            cell1.textContent = game.team1;
+
+            const cell2 = row.insertCell(1);
+            cell2.textContent = game.score1;
+
+            // Team 2 and Score 2
+            const cell3 = row.insertCell(2);
+            cell3.textContent = game.team2;
+
+            const cell4 = row.insertCell(3);
+            cell4.textContent = game.score2;
+        });
+
+        // Create pagination buttons
+        const totalPages = Math.ceil(teamGames.length / scoresPerPage);
+
+        paginationDiv.innerHTML = '';
+
+        // Previous button
+        if (currentPage > 1) {
+            const prevButton = createPaginationButton('Previous', currentPage - 1);
+            paginationDiv.appendChild(prevButton);
+        }
+
+        // Page buttons
+        for (let i = 1; i <= totalPages; i++) {
+            const pageButton = createPaginationButton(i, i);
+            paginationDiv.appendChild(pageButton);
+        }
+
+        // Next button
+        if (currentPage < totalPages) {
+            const nextButton = createPaginationButton('Next', currentPage + 1);
+            paginationDiv.appendChild(nextButton);
+        }
+
+    }
+
+    function createPaginationButton(label, page) {
+        const button = document.createElement('button');
+        button.textContent = label;
+        button.classList.add('button', 'is-link'); // Add Bulma button classes
+        button.addEventListener('click', () => {
+            currentPage = page;
+            displayGames();
+        });
+        return button;
+    }
+
+
 </script>
 
 </body>

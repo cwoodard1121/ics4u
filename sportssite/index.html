@@ -27,27 +27,7 @@
                 <!-- Table rows will be dynamically added here -->
             </tbody>
         </table>
-        <h1 class="title">View Team Games</h1>
 
-        <div class="field">
-          <label class="label">Team</label>
-          <div class="control">
-            <div class="select">
-              <select id="selector">
-                <option value="bluejays">Blue Jays</option>
-                <option value="redsox">Red Sox</option>
-                <option value="rays">Rays</option>
-              </select>
-            </div>
-          </div>
-        </div>
-  
-        <div class="field">
-          <div class="control">
-            <button class="button is-primary" onclick="redirectWithQuery()">Submit</button>
-          </div>
-        </div>
-  
         <h2 class="subtitle">Game Results</h2>
 
         <table class="table is-fullwidth">
@@ -125,6 +105,20 @@
                     </div>
                 </div>
             </div>
+
+            <div class="field is-horizontal">
+                <div class="field-label">
+                    <label class="label" for="date">Date:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input type="date" id="date" class="input" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <div class="field is-horizontal">
                 <div class="field-label"></div>
@@ -221,17 +215,6 @@
         });
     }
 
-    function redirectWithQuery() {
-      // Get selected option value
-      var selectedOption = document.getElementById('selector').value;
-
-      // Build query string
-      var queryString = '?team=' + encodeURIComponent(selectedOption).toLowerCase();
-
-      // Redirect to another page with query string
-      window.location.href = 'team.html' + queryString;
-    }
-
 function sortTable(column) {
     winsDirection = !winsDirection;
     teamsDirection = !teamsDirection;
@@ -295,34 +278,6 @@ function sortTable(column) {
         form.style.display = 'none';
     }
 
-    function submitForm(event) {
-        event.preventDefault();
-
-        const team1Select = document.getElementById('team1Select');
-        const team2Select = document.getElementById('team2Select');
-        const score1 = parseInt(document.getElementById('score1').value) || 0;
-        const score2 = parseInt(document.getElementById('score2').value) || 0;
-
-        // Check if the teams are different
-        if (team1Select.value === team2Select.value) {
-            alert('Please select two different teams for the game.');
-            return;
-        }
-
-
-        // Update standings
-        updateStandings(team1Select.value, score1, team2Select.value, score2);
-
-        // Update results table
-        updateResultsTable(team1Select.value, score1, team2Select.value, score2);
-
-        // Clear form inputs
-        document.getElementById('score1').value = '';
-        document.getElementById('score2').value = '';
-
-        // Hide the form
-        cancelForm();
-    }
 
     function updateStandings(team1, score1, team2, score2) {
         const winsElement1 = document.getElementById(`wins_${team1}`);
@@ -343,7 +298,7 @@ function sortTable(column) {
         rearrangeTeams();
     }
 
-    function updateResultsTable(team1, score1, team2, score2) {
+    function updateResultsTable(team1, score1, team2, score2,date) {
         const resultsBody = document.getElementById('resultsBody');
         const tr = document.createElement('tr');
         tr.innerHTML = `
@@ -351,6 +306,7 @@ function sortTable(column) {
             <td>${score1}</td>
             <td>${team2}</td>
             <td>${score2}</td>
+            <td>${date}</td>
         `;
         resultsBody.appendChild(tr);
 
@@ -391,6 +347,7 @@ function sortTable(column) {
         const team2Select = document.getElementById('team2Select');
         const score1 = parseInt(document.getElementById('score1').value) || 0;
         const score2 = parseInt(document.getElementById('score2').value) || 0;
+        const date = document.getElementById("date").value;
 
         // Check if the teams are different
         if (team1Select.value === team2Select.value) {
@@ -402,7 +359,7 @@ function sortTable(column) {
         updateStandings(team1Select.value, score1, team2Select.value, score2);
 
         // Update results table and store in localStorage
-        updateResultsTable(team1Select.value, score1, team2Select.value, score2);
+        updateResultsTable(team1Select.value, score1, team2Select.value, score2,date);
 
         // Clear form inputs
         document.getElementById('score1').value = '';
