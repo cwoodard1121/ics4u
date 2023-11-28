@@ -27,7 +27,27 @@
                 <!-- Table rows will be dynamically added here -->
             </tbody>
         </table>
+        <h1 class="title">View Team Games</h1>
 
+        <div class="field">
+          <label class="label">Team</label>
+          <div class="control">
+            <div class="select">
+              <select id="selector">
+                <option value="bluejays">Blue Jays</option>
+                <option value="redsox">Red Sox</option>
+                <option value="rays">Rays</option>
+              </select>
+            </div>
+          </div>
+        </div>
+  
+        <div class="field">
+          <div class="control">
+            <button class="button is-primary" onclick="redirectWithQuery()">Submit</button>
+          </div>
+        </div>
+  
         <h2 class="subtitle">Game Results</h2>
 
         <table class="table is-fullwidth">
@@ -199,6 +219,17 @@
             document.getElementById('team1Select').appendChild(teamOption1);
             document.getElementById('team2Select').appendChild(teamOption2);
         });
+    }
+
+    function redirectWithQuery() {
+      // Get selected option value
+      var selectedOption = document.getElementById('selector').value;
+
+      // Build query string
+      var queryString = '?team=' + encodeURIComponent(selectedOption).toLowerCase();
+
+      // Redirect to another page with query string
+      window.location.href = 'team.html' + queryString;
     }
 
 function sortTable(column) {

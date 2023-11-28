@@ -1,0 +1,60 @@
+<!-- team.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Standings</title>
+    <!-- Add Bulma CSS link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+</head>
+<body>
+
+<section class="section">
+    <div class="container">
+        <h1 class="title">Team Standings</h1>
+
+        <table id="standingsTable" class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th onclick="sortTable('team')">Team</th>
+                    <th onclick="sortTable('wins')">Wins</th>
+                    <th onclick="sortTable('standing')">Standing</th>
+                </tr>
+            </thead>
+            <tbody id="standingsBody">
+                <!-- Table rows will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <h2 class="subtitle">Game Results</h2>
+
+        <table class="table is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Team 1</th>
+                    <th>Score 1</th>
+                    <th>Team 2</th>
+                    <th>Score 2</th>
+                </tr>
+            </thead>
+            <tbody id="resultsBody">
+                <!-- Table rows will be dynamically added here -->
+            </tbody>
+        </table>
+
+        <div id="pagination" class="buttons has-addons is-centered">
+            <!-- Buttons for pagination will be dynamically added here -->
+        </div>
+    </div>
+</section>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search); 
+    const team = urlParams.get('team');
+    const teamData = urlParams.get('teamdata');
+    console.log(team);
+</script>
+
+</body>
+</html>
