@@ -37,6 +37,7 @@
                     <th>Score 1</th>
                     <th>Team 2</th>
                     <th>Score 2</th>
+                    <th>Date</th>
                 </tr>
             </thead>
             <tbody id="resultsBody">
@@ -143,6 +144,11 @@
     let winsDirection = true;
     let teamsDirection = true;
 
+    function redirectToTeamsPage(teamname) {
+        window.location.href = `team.html/?team=${teamname}`
+    }
+
+
     function loadGamesFromLocalStorage() {
         const games = JSON.parse(localStorage.getItem('games')) || [];
         const resultsBody = document.getElementById('resultsBody');
@@ -158,6 +164,7 @@
                 <td>${game.score1}</td>
                 <td>${game.team2}</td>
                 <td>${game.score2}</td>
+                <td>${game.date}</td>
             `;
             resultsBody.appendChild(tr);
             updateStandings(game.team1, game.score1, game.team2, game.score2);
@@ -177,11 +184,12 @@
         const resultsBody = document.getElementById('resultsBody');
 
         teams.forEach(team => {
-            const tr = document.createElement('tr');
+            const tr = document.createElement('tr');    
             tr.innerHTML = `
-                <td>${team}</td>
+                <td><a href="team.html?team=${team.toLowerCase()}"${team}</a>${team}</td>
                 <td id="wins_${team}">0</td>
                 <td id="standing_${team}">0</td>
+
             `;
             standingsBody.appendChild(tr);
         });

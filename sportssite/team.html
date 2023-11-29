@@ -31,6 +31,7 @@
                                         <th>Score 1</th>
                                         <th>Team 2</th>
                                         <th>Score 2</th>
+                                        <th>Date</th>
                                     </tr>
                                 </thead>
                                 <tbody id="resultsBody">
@@ -63,6 +64,7 @@
     
     if (document.readyState == "loading") {
         addEventListener("DOMContentLoaded", (e) => {
+            console.log("lodaded")
             teamGames = JSON.parse(localStorage.getItem("games")).filter(game => {
                 return (game.team1.toLowerCase() == team || game.team2.toLowerCase() == team);
             });
@@ -99,6 +101,9 @@
 
             const cell4 = row.insertCell(3);
             cell4.textContent = game.score2;
+
+            const date = row.insertCell(4);
+            date.textContent = game.date;
         });
 
         // Create pagination buttons
