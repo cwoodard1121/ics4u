@@ -7,6 +7,8 @@
     <title>Team Results</title>
     <!-- Add Bulma CSS link -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
 </head>
 <body>
 
@@ -14,6 +16,13 @@
         <div class="container">
             <h1 class="title">Team Results</h1> 
     
+            <a href="index.html" class="button is-info">
+                <span class="icon">
+                    <i class="fas fa-arrow-left"></i>
+                </span>
+                <span>Back to Home</span>
+            </a>
+
             <div class="columns is-multiline">
                 <!-- Display games as cards -->
                 <div class="column is-half">
@@ -50,100 +59,65 @@
                 </div>
             </div>
         </div>
+        <form id="dateForm" class="mb-4">
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">Start Date:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="date" id="startDate" name="startDate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label">End Date:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <input class="input" type="date" id="endDate" name="endDate">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="field is-horizontal">
+                <div class="field-label"></div>
+                <div class="field-body">
+                    <div class="field">
+                        <div class="control">
+                            <!-- Change the button type to "button" and add Bulma classes -->
+                            <button type="button" class="button is-primary" onclick="filterResults()">Filter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <div class="columns is-multiline">
+            <!-- Display games as cards -->
+            <div class="column is-half">
+                <!-- Adding a loop to create multiple cards for each game -->
+                <!-- ... (your existing card content) ... -->
+            </div>
+
+            <!-- Pagination buttons -->
+            <div class="column is-full">
+                <div id="pagination" class="buttons is-centered">
+                    <!-- ... (your existing pagination buttons) ... -->
+                </div>
+            </div>
+        </div>
     </section>
     
 
 
-<script>
-    let teamGames = [];
-    let currentPage = 1;
-    const scoresPerPage = 5;
-
-    const urlParams = new URLSearchParams(window.location.search); 
-    const team = urlParams.get('team');
-    
-    if (document.readyState == "loading") {
-        addEventListener("DOMContentLoaded", (e) => {
-            console.log("lodaded")
-            teamGames = JSON.parse(localStorage.getItem("games")).filter(game => {
-                return (game.team1.toLowerCase() == team || game.team2.toLowerCase() == team);
-            });
-            displayGames();
-        });
-    }
-
-    // display games in the table
-    function displayGames() {
-        const resultsBody = document.getElementById('resultsBody');
-        const paginationDiv = document.getElementById('pagination');
-
-        // Clear previous rows
-        resultsBody.innerHTML = '';
-
-        // Calculate start and end index based on the current page
-        const startIndex = (currentPage - 1) * scoresPerPage;
-        const endIndex = startIndex + scoresPerPage;
-
-        // Loop through teamGames and add rows to the table for the current page
-        teamGames.slice(startIndex, endIndex).forEach(game => {
-            const row = resultsBody.insertRow();
-
-            // Team 1 and Score 1
-            const cell1 = row.insertCell(0);
-            cell1.textContent = game.team1;
-
-            const cell2 = row.insertCell(1);
-            cell2.textContent = game.score1;
-
-            // Team 2 and Score 2
-            const cell3 = row.insertCell(2);
-            cell3.textContent = game.team2;
-
-            const cell4 = row.insertCell(3);
-            cell4.textContent = game.score2;
-
-            const date = row.insertCell(4);
-            date.textContent = game.date;
-        });
-
-        // Create pagination buttons
-        const totalPages = Math.ceil(teamGames.length / scoresPerPage);
-
-        paginationDiv.innerHTML = '';
-
-        // Previous button
-        if (currentPage > 1) {
-            const prevButton = createPaginationButton('Previous', currentPage - 1);
-            paginationDiv.appendChild(prevButton);
-        }
-
-        // Page buttons
-        for (let i = 1; i <= totalPages; i++) {
-            const pageButton = createPaginationButton(i, i);
-            paginationDiv.appendChild(pageButton);
-        }
-
-        // Next button
-        if (currentPage < totalPages) {
-            const nextButton = createPaginationButton('Next', currentPage + 1);
-            paginationDiv.appendChild(nextButton);
-        }
-
-    }
-
-    function createPaginationButton(label, page) {
-        const button = document.createElement('button');
-        button.textContent = label;
-        button.classList.add('button', 'is-link'); // Add Bulma button classes
-        button.addEventListener('click', () => {
-            currentPage = page;
-            displayGames();
-        });
-        return button;
-    }
-
-
-</script>
+<script src="team.js"></script>
 
 </body>
 </html>
