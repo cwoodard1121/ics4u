@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import cors from "cors";
 import Event from './models/event.js'
-import League from './models/league.js';
+import Team from './models/team.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -12,6 +12,8 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(bodyParser.json());
 app.use(cors());
+
+
 
 // MongoDB connection
 mongoose.connect('mongodb+srv://cameronwoodard1121:lAFpKvlMbvbMtt1A@ics4u.2naegbn.mongodb.net/?retryWrites=true&w=majority&appName=ics4u', {
@@ -25,8 +27,25 @@ mongoose.connect('mongodb+srv://cameronwoodard1121:lAFpKvlMbvbMtt1A@ics4u.2naegb
 });
 
 // Routes
+
+
+
+
 app.get('/', (req, res) => {
-  res.send('Welcome to School Sports Scheduler API');
+  res.status(404).send('not found');
+});
+
+
+app.get('/api/team/', async(req, res) => {
+  try {
+    // anything with the team name gets found 
+    const team = new Team(req.body);
+    const events = await Event.find(team.name);
+    res.json(events);
+  } catch (err){
+    console.error('Error fetching events: ',err);
+    res.status(500).json({error: 'Internal server error'});
+  }
 });
 
 // Event routes
@@ -52,30 +71,6 @@ app.post('/api/events', async (req, res) => {
   }
 });
 
-// Add routes for updating and deleting events
-
-// League routes
-app.get('/api/leagues', async (req, res) => {
-  try {
-    const leagues = await League.find();
-    res.json(leagues);
-  } catch (err) {
-    console.error('Error fetching leagues:', err);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
-app.post('/api/leagues', async (req, res) => {
-  try {
-    console.log(req.body)
-    const league = new League(req.body);
-    await league.save();
-    res.status(201).json(league);
-  } catch (err) {
-    console.error('Error creating league:', err);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
 
 // Add routes for updating and deleting leagues
 

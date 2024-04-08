@@ -2,12 +2,12 @@
 import mongoose from 'mongoose';
 
 const eventSchema = new mongoose.Schema({
-    title: String,
+    type: String,
     date: String,
     time: String,
-    title: String,
     home: String,
-    away: String
+    away: String,
+    location: String
 });
 
 export default mongoose.model('Event', eventSchema);
