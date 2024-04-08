@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 // Event routes
 app.get('/api/events', async (req, res) => {
   try {
-    const events = await Event.findOne();
+    const events = await Event.find();
     res.json(events);
   } catch (err) {
     console.error('Error fetching events:', err);
@@ -42,8 +42,8 @@ app.get('/api/events', async (req, res) => {
 
 app.post('/api/events', async (req, res) => {
   try {
-    console.log(req.body);
     const event = new Event(req.body);
+    console.log(req.body)
     await event.save();
     res.status(201).json(event);
   } catch (err) {
@@ -67,6 +67,7 @@ app.get('/api/leagues', async (req, res) => {
 
 app.post('/api/leagues', async (req, res) => {
   try {
+    console.log(req.body)
     const league = new League(req.body);
     await league.save();
     res.status(201).json(league);

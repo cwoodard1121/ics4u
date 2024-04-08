@@ -38,7 +38,7 @@ export default {
     },
     async fetchLeagues() {
       try {
-        const response = await axios.get('http://localhost:3000/api/leagues');
+        const response = await axios.get('/api/leagues');
         console.log(response.status);
         this.leagues = response.data;
         console.log(response.data.length);
