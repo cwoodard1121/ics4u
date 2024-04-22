@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
+
+import mongoose from 'mongoose';
 
 const teamSchema = new mongoose.Schema({
     name: String,
-    id: Number,
-    league: String,
-})
+    league: String
+});
 
-module.exports = mongoose.model('Team', teamSchema);
+export default mongoose.model('Team', teamSchema);
