@@ -1,13 +1,17 @@
-
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const eventSchema = new mongoose.Schema({
-    title: String,
-    date: String,
+    name: String,
+    description: String,
     time: String,
-    title: String,
-    home: String,
-    away: String
-});
+    location: String,
+    date: String,
+    teams: String,
+    notes: String,
+    id: String,
+    whatTeam: String,
+})
 
-export default mongoose.model('Event', eventSchema);
+
+
+module.exports = mongoose.model('Event', eventSchema);

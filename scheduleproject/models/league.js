@@ -1,12 +1,7 @@
-// models/league.js
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
-const leagueSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
-  },
-  // Add more fields as needed
-});
+const LeagueSchema = mongoose.Schema({
+    name: String,
+})
 
-export default mongoose.model('League', leagueSchema);
+module.exports = mongoose.model('League', LeagueSchema);
