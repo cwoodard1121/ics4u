@@ -27,8 +27,6 @@ export default {
         if (newVal) {
             teamSelectForEvent.value.teamIsSelected = true;
             eventsBasedOffTeam.value = (await axios.get(`${API_URL}/api/specificEvent/${teamSelectForEvent.value.whatTeam}`)).data;
-        } else {
-           
         }
     });
 
@@ -117,7 +115,7 @@ export default {
                     <div class="card-content">
                         <form @submit.prevent="deleteLeague">
                             <div class="field">
-                            <label for="email" class="label">Choose League</label>
+                            <label for="email" class="label">League</label>
                             <div class="select">
                                 <select name="leagues" id="leagues"  v-model="whatToDelete.whatLeague">
                             
@@ -127,7 +125,7 @@ export default {
                             </div>
                             
                             </div>
-                            <button type="submit" class="button">Delete League</button>
+                            <button type="submit" class="button">Remove League</button>
                         </form>
                     </div>
                 </div>
@@ -137,7 +135,7 @@ export default {
                     <div class="card-content">
                         <form @submit.prevent="deleteTeam">
                             <div class="field">
-                            <label for="email" class="label">Choose team to delete</label>
+                            <label for="email" class="label">Delete League</label>
                             <div class="select">
                                 <select name="teams" id="teams"  v-model="whatToDelete.whatTeam">
                             
@@ -157,7 +155,7 @@ export default {
                     <div class="card-content">
                         <form @submit.prevent="deleteEvent">
                             <div class="field">
-                            <label for="email" class="label">Choose team for event</label>
+                            <label for="email" class="label">Event Team</label>
                             <div class="select">
                                 <select name="teams" id="teams"  v-model="teamSelectForEvent.whatTeam">
                             

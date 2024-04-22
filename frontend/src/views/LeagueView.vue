@@ -38,7 +38,7 @@ export default {
               <table class="table is-centered is-size-4">
                 <thead>
                   <tr>
-                    <th>Leagues Available</th>
+                    <th>Leagues</th>
                   </tr>
                 </thead>
                 <tbody>

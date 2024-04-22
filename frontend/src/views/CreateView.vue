@@ -31,7 +31,6 @@ export default {
     })
     async function createTeam(){
       try {
-        console.log("creating team...")
             await axios.post(`${API_URL}/api/teams`, {
                 name: teamData.value.name + ` (${teamData.value.whatLeague})`,
                 id: teamData.value.id,
@@ -98,7 +97,7 @@ export default {
           <div class="column">
             <div class="card">
               <div class="card-content">
-                  <h1 class="title">Create a Team</h1>
+                  <h1 class="title">Add Team</h1>
                   <form @submit.prevent="createTeam">
                   <div class="field">
                     <label for="email" class="label">Name:</label>
@@ -108,7 +107,7 @@ export default {
                     
                   </div>
                   <div class="field">
-                    <label for="email" class="label">Create New League</label>
+                    <label for="email" class="label">Create League</label>
                     <input type="text"  v-model="teamData.whatLeague" class="input">
                   </div>
                   <div class="field">
@@ -122,7 +121,7 @@ export default {
                     </div>
                     
                   </div>
-                  <button type="submit" class="button">Create Your Team</button>
+                  <button type="submit" class="button">Add Team</button>
                   </form>
               </div>
               
@@ -133,7 +132,7 @@ export default {
           <div class="column">
             <div class="card">
               <div class="card-content">
-                <h1 class="title">Create an Event</h1>
+                <h1 class="title">Add Event</h1>
                 <form @submit.prevent="createEvent">
                   <div class="field">
                     <label class="label">Name:</label>
@@ -164,7 +163,7 @@ export default {
                     <input type="text"  v-model="eventData.notes" class="input" required>
                   </div>
                   <div class="field">
-                    <label class="label">What team is this for And which team is this league in </label>
+                    <label class="label">Team and League details</label>
                     <div class="select">
                       <select name="teams" id="teams"  v-model="eventData.whatTeam">
                     
@@ -175,7 +174,7 @@ export default {
                     
                   </div>
                   
-                  <button type="submit" class="button">Create Your Event</button>
+                  <button type="submit" class="button">Add Event</button>
                 </form>
               </div>
             </div>

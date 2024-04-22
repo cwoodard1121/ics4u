@@ -11,8 +11,8 @@ import { RouterLink, RouterView } from 'vue-router'
                     <div class="columns is-centered">
                         <div class="column is-half">
                             <div class="box has-text-centered">
-                                <h1 class="title">Welcome to the site!</h1>
-                                <p class="subtitle">The Unofficial Website of All School Athletics</p>
+                                <h1 class="title">Athletic website</h1>
+                                <p class="subtitle">Athletic website</p>
                                 <RouterLink to="/league" class="button is-primary">Go to Schedule</RouterLink>
                             </div>
                         </div>
