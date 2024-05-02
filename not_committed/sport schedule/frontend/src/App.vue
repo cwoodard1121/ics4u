@@ -4,12 +4,12 @@
         <section class="section">
           <nav class="navbar" role="navigation" aria-label="main navigation">
             <div class="navbar-brand">
-              <h1 class="navbar-item title">Sport Schedule Website</h1>
+              <h1 class="navbar-item title">Sports Schedule</h1>
             </div>
             <div id="navbarBasicExample" class="navbar-menu is-active">
               <div class="navbar-end" >
                 <RouterLink to="/" class="navbar-item">Home</RouterLink>
-                <RouterLink to="/league" class="navbar-item">Schedule</RouterLink>
+                <RouterLink to="/league" class="navbar-item">Events</RouterLink>
                 <RouterLink to="/auth/login" v-if="!isLoggedIn" class="navbar-item">Login</RouterLink>
                 <RouterLink to="/" @click="logout" v-if="isLoggedIn" class="navbar-item">Logout</RouterLink>
                 <div class="navbar-item has-dropdown is-hoverable" v-if="checkRole === 'admin'">
@@ -17,7 +17,7 @@
                     Admin Stuff
                   </a>
                   <div class="navbar-dropdown">
-                    <RouterLink to="/create" v-if="checkRole === 'admin'" class="navbar-item">Add</RouterLink>
+                    <RouterLink to="/create" v-if="checkRole === 'admin'" class="navbar-item">Create</RouterLink>
                     <hr class="navbar-divider">
                     <RouterLink to="/delete" v-if="checkRole === 'admin'" class="navbar-item">Delete</RouterLink>
                   </div>
@@ -58,6 +58,7 @@ export default {
         try {
           let token = localStorage.getItem('token')
           token = AuthService.decodeToken(token)
+          console.log(token.role)
           return token.role
         } catch (error) {
           return "regular user"
@@ -85,7 +86,11 @@ export default {
 
 
 <style scoped>
+$orange: #FFA500;
+$primary: $orange;
 
+/* Set secondary color if needed */
+$secondary: $orange;
 
 
 </style>

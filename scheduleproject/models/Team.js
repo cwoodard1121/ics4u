@@ -1,5 +1,5 @@
 
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const teamSchema = new mongoose.Schema({
     name: String,
@@ -7,4 +7,4 @@ const teamSchema = new mongoose.Schema({
     id: Number
 });
 
-export default mongoose.model('Team', teamSchema);
+module.exports = mongoose.model('Team', teamSchema);
